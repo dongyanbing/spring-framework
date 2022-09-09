@@ -1,5 +1,7 @@
 buildscript {
 	repositories {
+		mavenLocal()
+		maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
 		maven { url "https://repo.spring.io/plugins-release" }
 	}
 	dependencies {
@@ -75,7 +77,7 @@ configure(allprojects) { project ->
 		}
 	}
 
-	configurations.all {
+	/*configurations.all {
 		// Check for updates every build
 		resolutionStrategy.cacheChangingModulesFor 0, "seconds"
 
@@ -85,8 +87,12 @@ configure(allprojects) { project ->
 				details.useVersion slf4jVersion
 			}
 		}
+	}*/
+	allprojects {
+		repositories {
+			maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+		}
 	}
-
 	def commonCompilerArgs =
 			["-Xlint:serial", "-Xlint:cast", "-Xlint:classfile", "-Xlint:dep-ann",
 			 "-Xlint:divzero", "-Xlint:empty", "-Xlint:finally", "-Xlint:overrides",
